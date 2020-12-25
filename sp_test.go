@@ -7,14 +7,15 @@ import (
 )
 
 func TestDemo(t *testing.T) {
-	//GetEvent("hello").Publish(123)
-	//GetEvent("hello").Subscribe(helloworld1)
-
+	type user struct {
+		Name string
+		Age  int
+	}
 	go func() {
 		for {
 
 			time.Sleep(10 * time.Millisecond)
-			GetEvent("hello").Publish(time.Now().UnixNano() / 1e6)
+			GetEvent("hello").Publish(&user{Name: "tom", Age: 18})
 		}
 	}()
 	go func() {
